@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <input type="text" v-model = 'todoValue'>
+            <button @click='handleBtnClick'>提交</button>
+        </div>
+        <ul>
+            <!-- <li v-for = 'item in list'>{{item}}</li> -->
+            <!-- 父组件创造的子组件 -->
+           <todo-item v-bind:content_li = 'item'
+                      v-for = 'item in list'>
+           </todo-item>
+        </ul>
+    </div>
+</body>
+<script>
+    //  注册全局组件TodoItem
+    // Vue.component('TodoItem', {
+    //     props: ['content_li'],  //父 用 props 给子传值
+    //     template: '<li>{{content_li}}</li>' // tempalte 里面只能用 {{}}的方式赋值
+    // })
+
+    // 注册局部组件
+    //子组件
+    var TodoItem = {
+        props: ['content_li'],
+        template: '<li @click ="handleItemClick">{{content_li}}</li>',
+        methods:{
+            handleItemClick :function(){
+                alert('click');
+            } 
+        }
+    }
+
+    //父组件
+    var app = new Vue({
+        el:'#app',
+        components: {
+            TodoItem : TodoItem 
+        },
+        data:{
+            todoValue: '',
+            list : []
+        },
+        methods: {
+            handleBtnClick:function(){
+                this.list.push(this.todoValue);
+                this.todoValue = ''
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./jquery.min.js"></script>
+</head>
+<body>
+    <div>
+        <input type="text" name="" id="">
+        <button id="btn">提交</button>
+        <ul></ul>
+    </div>
+    <script>
+        function Page(){
+
+        }
+        //给Page 添加原型方法
+        $.extend(Page.prototype,{
+            init:function(){
+                this.bindEvents();
+            },
+            bindEvents:function(){
+                var btn = $('#btn');
+                // $.proxy  把 handleBtnClick，固定绑定在当前this上，即page上了。
+                btn.on('click',$.proxy(this.handleBtnClick,this));//handleBtnClick里面的this，指向的是page
+
+                //btn.on('click',this.handleBtnClick);  //打印handleBtnClick里面的this，指向的是btn
+            },
+            handleBtnClick:function(){
+                console.log(this);
+                alert(123);
+            }
+            
+        })
+        var page = new Page();
+        page.init();
+        
+    
+    </script>
+    
+</body>
+
+</html>
