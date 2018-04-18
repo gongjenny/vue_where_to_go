@@ -14,8 +14,6 @@
             <button @click='handleBtnClick'>提交</button>
         </div>
         <ul>
-            <!-- <li v-for = 'item in list'>{{item}}</li> -->
-            <!-- 父组件创造的子组件 -->
            <todo-item v-bind:content_li = 'item'
                       v-for = 'item in list'>
            </todo-item>
