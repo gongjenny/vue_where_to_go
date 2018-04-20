@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+         <con ref='hello' @counter = 'hale'></con> 
+        
+    </div>
+</body>
+<script>
+    Vue.component('con',{
+        data:function(){
+            return{
+                number : 1
+            }
+        },
+        template: '<p @click="handClick">{{number}}</p>',
+        methods: {
+            handClick: function(){  
+                this.$emit('counter')    
+            }
+        }
+    });
+    var vm = new Vue({
+        el:'#app',
+        methods:{
+            hale:function(){
+                console.log(this.$refs.hello);
+            }
+        }
+    })
+</script>
+</html >

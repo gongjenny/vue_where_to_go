@@ -14,7 +14,10 @@ vue是mvvm 的框架 , m是model,v是view，vm 是vue内置的层。
    同时，若往父组件传递事件（在注册组件中写this.$emit）时，这个实例组件应该去监听父组件的事件。
 
 ### 4、ol ul标签区别
-  <ol></ol> 默认前边是 '1,2' 排序的数字; <ul></ul> 默认前边是 '.'
+```
+<ol></ol>默认前边是 '1,2' 排序的数字; <ul></ul> 默认前边是 '.'
+```
+ 
 
 ### 5、打印 vm
 想看（var vm = ）new Vue() 出来的实例的属性和方法，可以去控制台打印vm；
@@ -45,13 +48,98 @@ v-if 和 v-show 都可以控制标签的显示和隐藏，但v-if ='false'时会
 ### 13、 条件渲染
 v-if， v-else-if ， v-else  ，这三个判断要连在一起用，中间不能被其他标签隔断，不然会报错。
 
-### 14、key 管理复用元素
-  用  key 管理可复用的元素
+### 14、key 管理可复用元素
   给某个元素赋上key值，vue会认为这个元素是页面上唯一的元素，vue就不会复用这一块的内容。若没有key值，vue机制会为了减少dom的使用，复用这块区域。
 
-### 15、对data操作的7个方法
-当我们想对data 数据，进行添加一组数据的时候，不能用下标的方式添加，只能使用vue提供的几个操作数组的方法编译，
+### 15、对data操作的3个方法：
+**1、7个变异方法**
+当我们想对data 数据，进行添加一组数据的时候，不能用下标的方式添加，可以使用vue提供的几个操作数组的方法编译，
     vue提供的数组编译方法有7个：pop，shift，unshfit，reverse，push，splice，sort。
+**2、改变数据的引用地址**
+还有一个方法:就是改变data里面数据的引用地址。
+例如：
+```
+     var vm = new Vue({
+       data :{
+         list:[{
+           name:"jenny",
+           id:"1"
+         }]
+       }
+     })
+```
+要想改变页面上的list渲染的值，改变下标无效，可以让list指向另外一块地址：
+```
+vm.list = [{
+           name:"heihei",
+           id:"2"
+         }]
+```
+**3.1、Vue.set()方法操作**
+```
+  Vue.set(vm.list,'age','27');或者
+  Vue.set(vm.list,'0','doudou') //把list里面的下标为 0 的项,改成“doudou”。
 
+```
+**3.2、vue的实例$set()方法操作**
+```
+vm.$set(vm.list,'age','27');或者
+vm.$set(vm.list,'0','doudou') //把list里面的下标为 0 的项,改成“doudou”。
+```
 
+### 16、template模板
+```
+    <template v-for='item in list'></template>是一个模板占位符，它可以帮我们包裹标签，循环数据，但是这个标签并不渲染到页面。
+```
+### 17、组件使用的细节点
+**1、tr里面的is 属性，解决浏览器解析table,ul,select组件的问题**
+```
+    <table>
+      <tbody>
+          <tr is='row'></tr>
+          <tr is='row'></tr>
+      </tbody>
+    </table>
+    Vue.component('row',{
+        template:'<tr><td>this is doudou</td></tr>'
+    });
+```
+
+    以上代码可以解决以下代码bug。若table中把tr当成组件，浏览器会把它解析到table外的问题。(ul、select类似)
+    即：
+
+```
+    <table>
+      <tbody>
+          <row></row>
+          <row></row>
+      </tbody>
+    </table>
+    Vue.component('row',{
+        template:'<tr><td>this is doudou</td></tr>'
+    });
+    浏览器会解析成：
+    <tr></tr>
+    <tr></tr>
+    <table>
+      <tbody>
+      </tbody>
+    </table>
+```
+**2、在子组件中定义data的时候，data必须是一个函数，并且return一个对象，不能是一个对象。只有在跟组件中定义data的的时候才可以是一个对象**
+之所以这么设计是因为，根组件只会被调用一次，而子组件可能会被调用多次，子组件中的数据如果使用一套数据的话，若改变数据,子组件相互之间会产生影响，要想避免这种现象，就需要一个函数去存储每一次调用子组件的数据.
+```
+Vue.component('row',{
+        data:function(){
+          return {
+            name:'this is doudou'
+          }
+        }
+        template:'<tr><td>{{name}}</td></tr>'
+    });
+```
+**3、子组件中写ref。在父组件通过this.$refs.name获取。(这里涉及到父子传参。)**
+有时我们不得不操作dom，这时我们可以使用vue提供的ref = 'heihei'找到，获取ref 的方法为 this.$refs.heihei;
+若ref 写到 div这样的标签上时，则获取到的是该dom元素;
+若ref 写到 组件上， 则获取到的是这个组件对象，里面包含的是这个组件上vue的内置方法。例如：$attrs,$el 等等。
 
