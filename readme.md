@@ -169,6 +169,45 @@ Vue.component('row',{
     }
  })
 ```
+
 ###21、非父子组件传值(Bus/总线/发布订阅模式/观察者模式)
    除了直接的父子关系以外，其他的都是非父子组件传值。
-**21-1、使用vue官方提供的vue-x**
+   通过给vue的原型方法添加一个bus函数，并且赋值为空的vue实例。在mounted钩子函数中用bus去监听，传递过来要改变的数据。
+```
+<body>
+    <div id="root">
+        <!-- 两个child之间传值 -->
+        <child content='gong'></child>
+        <child content='jenny'></child> 
+    </div> 
+</body>
+<script>
+    Vue.prototype.bus = new Vue(); //给bus赋一个空的vue实例
+
+    Vue.component('child',{
+        props:{content:String},
+        data:function(){   //修改父组件传过来的参数，要把数据先拷贝一份，在进行修改
+            return {
+                selfContent:this.content
+            }
+        },
+        template:"<div @click='handClick'>{{selfContent}}</div>",
+        methods: {
+            handClick: function(){
+                this.bus.$emit('change',this.selfContent);
+            }
+        },
+        mounted:function(){
+            var _this = this;
+            this.bus.$on('change',function(msg){
+                _this.selfContent = msg;
+                //alert(msg);  //弹框两次，是因为，这两个组件都进行了这个事件的监听。？？
+            })
+        }
+    });
+    var vm = new Vue({
+        el:'#root',
+
+    })
+</script>
+```
