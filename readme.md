@@ -149,3 +149,26 @@ Vue.component('row',{
 若ref 写到 div这样的标签上时，则获取到的是该dom元素;
 若ref 写到 组件上， 则获取到的是这个组件对象，里面包含的是这个组件上vue的内置方法。例如：$attrs,$el 等等。
 
+###20、给组件绑定原生事件(.native)
+  可以不使用$emit来触发父组件的事件。
+```
+<div id='root'>
+  <child @click.native = 'handleClick'> </child>
+</div>
+
+ Vue.component =('child', {
+   template:'<div>child</div>'
+ })
+ var vm = new Vue({
+    el:'#root',
+    methods:{
+      handleClick:function(){
+        alert('click');
+
+      }
+    }
+ })
+```
+###21、非父子组件传值(Bus/总线/发布订阅模式/观察者模式)
+   除了直接的父子关系以外，其他的都是非父子组件传值。
+**21-1、使用vue官方提供的vue-x**
