@@ -211,3 +211,83 @@ Vue.component('row',{
     })
 </script>
 ```
+### 22、slot 插槽 ，具名插槽(有name的slot)
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue的插槽 slot</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id='root'>
+        <body-content>
+            <div class="header" slot="header">header</div>
+            <div class="footer" slot="footer">footer</div>
+        </body-content>
+    </div>
+</body_content>
+<script>
+    Vue.component('bodyContent',{
+        template :`<div>
+                        <slot name='header'></slot>
+                        <div class='content'>content</div>
+                        <slot name='footer'></slot>
+                    </div>
+                    `
+    })
+    var vm = new Vue({
+        el:'#root'
+    })
+</script>
+</html>
+```
+### 23、vue 作用域插槽
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue的作用域插槽</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <child>
+            <template slot-scope="props">  // 用到作用域插槽的时候，这里要用<template></template>装载。是固定的的写法。
+                <li>{{props.itemdata}}</li>
+            </template>
+        </child>
+    </div>
+    <script>
+        Vue.component('child',{
+            data:function(){
+                return {
+                    list:[1,2,3,4]
+                }
+            },
+            template:`<div>
+                        <ul>
+                            <slot v-for = 'item in list' :itemdata=item></slot> //把循环出来的item绑定到itemdata的属性上，vue会用slot-scope 来承载itemdata里面的数据
+                        </ul>
+                      </div>
+                      `
+        })
+        var vm = new Vue({
+            el: '#root'
+        })
+    
+    </script>
+    
+</body>
+</html>
+```
+
+
+
+
