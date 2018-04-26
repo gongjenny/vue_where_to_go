@@ -245,7 +245,7 @@ Vue.component('row',{
 </script>
 </html>
 ```
-### 23、vue 作用域插槽
+### 23、vue 作用域插槽 slot-scope
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -287,7 +287,52 @@ Vue.component('row',{
 </body>
 </html>
 ```
+### 24、动态组件与v-once指令
+**24-1、component动态组件**
+    omponent是vue的动态组件，里面的is属性为谁的值，就显示哪个组件。
+**24-2、v-once指令**
+    使用v-if ，vue底层会有一个创建和销毁改组件的过程，这样是非常消耗性能的，所有我们可以给组件中加v-once，去让它在第一次创建的时候，将该组件保留在内存中，下次使用时，直接从内存中取。
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- <component :is='type'></component>-->
+        <child-one v-if='type == "child-one"'></child-one> 
+        <child-two v-if='type == "child-two"'></child-two>
+        <button @click='handleBtnClick'>toggle</button>
+    </div>
+    
+</body>
+<script>
+    Vue.component('child-one',{
+        template:'<div v-once>child one</div>'
+    });
+    Vue.component('child-two',{
+        template:'<div v-once>child two</div>'
+    })
+    var vm = new Vue({
+        el:'#root',
+        data:{
+            type: 'child-one',
+        },
+        methods: {
+            handleBtnClick :function(){
+                this.type = this.type === 'child-one' ? 'child-two' : 'child-one'
+            }
+        }
 
+    })
+</script>
+</html>
 
+```
 
 
