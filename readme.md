@@ -294,7 +294,7 @@ Vue.component('row',{
 
 **24-2、v-once指令**
 
-    使用v-if ，vue底层会有一个创建和销毁改组件的过程，这样是非常消耗性能的，所有我们可以给组件中加v-once，去让它在第一次创建的时候，将该组件保留在内存中，下次使用时，直接从内存中取。
+    使用v-if ，vue底层会有一个创建和销毁该组件的过程，这样是非常消耗性能的，所有我们可以给组件中加v-once，去让它在第一次创建的时候，将该组件保留在内存中，下次使用时，直接从内存中取。
 
 ```
 <!DOCTYPE html>
@@ -338,5 +338,16 @@ Vue.component('row',{
 </html>
 
 ```
+
+### 25、vue中css动画原理
+    <transtion name='fade'></transtion>  
+    不写name，vue中默认动画前缀为v-， 写了name，默认为fade-,name可以随意取。
+![avatar](./enter.png);
+![avatar](./leave.png);
+
+### 26.在vue中使用animate.css库
+
+
+
 
 
