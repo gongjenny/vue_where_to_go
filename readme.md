@@ -181,4 +181,3 @@ Vue.component('row',{
 ```
 ###20、组件参数校验 
   props:{content:String/Number/[String,String]}//要求父组件传过来的content是对应类型。具体参考文档。
-
