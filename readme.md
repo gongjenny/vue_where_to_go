@@ -181,3 +181,201 @@ Vue.component('row',{
 ```
 ###20、组件参数校验 
   props:{content:String/Number/[String,String]}//要求父组件传过来的content是对应类型。具体参考文档。
+
+###21、给组件绑定原生事件(.native)
+  可以不使用$emit来触发父组件的事件。
+```
+<div id='root'>
+  <child @click.native = 'handleClick'> </child>
+</div>
+
+ Vue.component =('child', {
+   template:'<div>child</div>'
+ })
+ var vm = new Vue({
+    el:'#root',
+    methods:{
+      handleClick:function(){
+        alert('click');
+
+      }
+    }
+ })
+```
+
+### 22、非父子组件传值(Bus/总线/发布订阅模式/观察者模式)
+   除了直接的父子关系以外，其他的都是非父子组件传值。
+   通过给vue的原型方法添加一个bus函数，并且赋值为空的vue实例。在mounted钩子函数中用bus去监听，传递过来要改变的数据。
+```
+<body>
+    <div id="root">
+        <!-- 两个child之间传值 -->
+        <child content='gong'></child>
+        <child content='jenny'></child> 
+    </div> 
+</body>
+<script>
+    Vue.prototype.bus = new Vue(); //给bus赋一个空的vue实例
+
+    Vue.component('child',{
+        props:{content:String},
+        data:function(){   //修改父组件传过来的参数，要把数据先拷贝一份，在进行修改
+            return {
+                selfContent:this.content
+            }
+        },
+        template:"<div @click='handClick'>{{selfContent}}</div>",
+        methods: {
+            handClick: function(){
+                this.bus.$emit('change',this.selfContent);
+            }
+        },
+        mounted:function(){
+            var _this = this;
+            this.bus.$on('change',function(msg){
+                _this.selfContent = msg;
+                //alert(msg);  //弹框两次，是因为，这两个组件都进行了这个事件的监听。？？
+            })
+        }
+    });
+    var vm = new Vue({
+        el:'#root',
+
+    })
+</script>
+```
+### 23、slot 插槽 ，具名插槽(有name的slot)
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue的插槽 slot</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id='root'>
+        <body-content>
+            <div class="header" slot="header">header</div>
+            <div class="footer" slot="footer">footer</div>
+        </body-content>
+    </div>
+</body_content>
+<script>
+    Vue.component('bodyContent',{
+        template :`<div>
+                        <slot name='header'></slot>
+                        <div class='content'>content</div>
+                        <slot name='footer'></slot>
+                    </div>
+                    `
+    })
+    var vm = new Vue({
+        el:'#root'
+    })
+</script>
+</html>
+```
+### 24、vue 作用域插槽 slot-scope
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue的作用域插槽</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <child>
+            <template slot-scope="props">  // 用到作用域插槽的时候，这里要用<template></template>装载。是固定的的写法。
+                <li>{{props.itemdata}}</li>
+            </template>
+        </child>
+    </div>
+    <script>
+        Vue.component('child',{
+            data:function(){
+                return {
+                    list:[1,2,3,4]
+                }
+            },
+            template:`<div>
+                        <ul>
+                            <slot v-for = 'item in list' :itemdata=item></slot> //把循环出来的item绑定到itemdata的属性上，vue会用slot-scope 来承载itemdata里面的数据
+                        </ul>
+                      </div>
+                      `
+        })
+        var vm = new Vue({
+            el: '#root'
+        })
+    
+    </script>
+    
+</body>
+</html>
+```
+### 25、动态组件与v-once指令
+**25-1、component动态组件**
+
+    component是vue的动态组件，里面的is属性为谁的值，就显示哪个组件。
+
+**25-2、v-once指令**
+
+    使用v-if ，vue底层会有一个创建和销毁该组件的过程，这样是非常消耗性能的，所有我们可以给组件中加v-once，去让它在第一次创建的时候，将该组件保留在内存中，下次使用时，直接从内存中取。
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- <component :is='type'></component>-->
+        <child-one v-if='type == "child-one"'></child-one> 
+        <child-two v-if='type == "child-two"'></child-two>
+        <button @click='handleBtnClick'>toggle</button>
+    </div>
+    
+</body>
+<script>
+    Vue.component('child-one',{
+        template:'<div v-once>child one</div>'
+    });
+    Vue.component('child-two',{
+        template:'<div v-once>child two</div>'
+    })
+    var vm = new Vue({
+        el:'#root',
+        data:{
+            type: 'child-one',
+        },
+        methods: {
+            handleBtnClick :function(){
+                this.type = this.type === 'child-one' ? 'child-two' : 'child-one'
+            }
+        }
+
+    })
+</script>
+</html>
+
+```
+
+### 26、vue中css动画原理
+    <transtion name='fade'></transtion>  
+    不写name，vue中默认动画前缀为v-， 写了name，默认为fade-,name可以随意取。
+![avatar](./enter.png);
+![avatar](./leave.png);
+
+### 27.在vue中使用animate.css库
