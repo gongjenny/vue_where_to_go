@@ -374,6 +374,7 @@ props:{content:String/Number/[String,String]}//要求父组件传过来的conten
 ![avatar](./leave.png);
 
 ### 26.在vue中使用animate.css库
+ 其余是动画相关的知识，暂时用不到这个，先以项目中用到的为主，以后持续补充这个。 大家，加油！
 
 
 
