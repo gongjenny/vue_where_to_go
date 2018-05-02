@@ -1,5 +1,5 @@
-### 项目简介
-  去哪网，学习中，以后持续补充...
+## 项目简介
+  基于vue项目的前期知识点和要点准备，加油，你是最棒的！
 
 
 ### 1、vue的简介
@@ -52,12 +52,12 @@ v-if， v-else-if ， v-else  ，这三个判断要连在一起用，中间不�
   给某个元素赋上key值，vue会认为这个元素是页面上唯一的元素，vue就不会复用这一块的内容。若没有key值，vue机制会为了减少dom的使用，复用这块区域。
 
 ### 15、对data操作的3个方法：
-**1、7个变异方法**
+**15-1、7个变异方法**
 
 当我们想对data 数据，进行添加一组数据的时候，不能用下标的方式添加，可以使用vue提供的几个操作数组的方法编译，
     vue提供的数组编译方法有7个：pop，shift，unshfit，reverse，push，splice，sort。
     
-**2、改变数据的引用地址**
+**15-2、改变数据的引用地址**
 
 还有一个方法:就是改变data里面数据的引用地址。
 例如：
@@ -78,13 +78,13 @@ vm.list = [{
            id:"2"
          }]
 ```
-**3.1、Vue.set()方法操作**
+**15-3.1、Vue.set()方法操作**
 ```
   Vue.set(vm.list,'age','27');或者
   Vue.set(vm.list,'0','doudou') //把list里面的下标为 0 的项,改成“doudou”。
 
 ```
-**3.2、vue的实例$set()方法操作**
+**15-3.2、vue的实例$set()方法操作**
 ```
 vm.$set(vm.list,'age','27');或者
 vm.$set(vm.list,'0','doudou') //把list里面的下标为 0 的项,改成“doudou”。
@@ -95,7 +95,7 @@ vm.$set(vm.list,'0','doudou') //把list里面的下标为 0 的项,改成“doud
     <template v-for='item in list'></template>是一个模板占位符，它可以帮我们包裹标签，循环数据，但是这个标签并不渲染到页面。
 ```
 ### 17、组件使用的细节点
-**1、tr里面的is 属性，解决浏览器解析table,ul,select组件的问题**
+**17-1、tr里面的is 属性，解决浏览器解析table,ul,select组件的问题**
 ```
     <table>
       <tbody>
@@ -129,7 +129,7 @@ vm.$set(vm.list,'0','doudou') //把list里面的下标为 0 的项,改成“doud
       </tbody>
     </table>
 ```
-**2、在子组件中定义data的时候，data必须是一个函数，并且return一个对象，不能是一个对象。只有在跟组件中定义data的的时候才可以是一个对象。**
+**17-2、在子组件中定义data的时候，data必须是一个函数，并且return一个对象，不能是一个对象。只有在跟组件中定义data的的时候才可以是一个对象。**
 
 之所以这么设计是因为，根组件只会被调用一次，而子组件可能会被调用多次，子组件中的数据如果使用一套数据的话，若改变数据,子组件相互之间会产生影响，要想避免这种现象，就需要一个函数去存储每一次调用子组件的数据.
 
@@ -143,15 +143,44 @@ Vue.component('row',{
         template:'<tr><td>{{name}}</td></tr>'
     });
 ```
-**3、子组件中写ref。在父组件通过this.$refs.name获取。(这里涉及到父子传参。)**
+**17-3、子组件中写ref。在父组件通过this.$refs.name获取。(这里涉及到父子传参。)**
 
 有时我们不得不操作dom，这时我们可以使用vue提供的ref = 'heihei'找到，获取ref 的方法为 this.$refs.heihei;
 若ref 写到 div这样的标签上时，则获取到的是该dom元素;
 若ref 写到 组件上， 则获取到的是这个组件对象，里面包含的是这个组件上vue的内置方法。例如：$attrs,$el 等等。
 
-### 20、给组件绑定原生事件(.native)
-  可以不使用$emit来触发父组件的事件。
-```
+### 18、父子组件传值的问题 单向数据流 父组件可以传递任何值给子组件，但是子组件不能改变父组件传过来的数据，若是一定要改，则可以要拷贝一份到data中，改变这个复本就可以了。
+
+<div id='root'>
+  <counter :count='3' @inc = "handleInc">
+
+  </counter>
+<div>
+<script>
+  var counter = {
+    props:['count'],
+     data:function(){
+       return number = this.count; // 父组件中传递过来的count， methods是不能直接更改的，若一定要改，可以写成这样，再在methods中使用拷贝的那份。
+     },
+     template:'<div @click = "handleClick"></div>',
+     methods:{
+         handleClick:function(){
+             this.number = this.number + 2 ;
+             this.$emit('inc')  //此处的父组件函数省去
+         }
+     }
+  }
+</script>
+
+### 19、绑定数字
+
+    <div content='123'></div> //123是string
+    <div :content='123'></div>//123是number
+### 20、组件参数校验 
+props:{content:String/Number/[String,String]}//要求父组件传过来的content是对应类型。具体参考文档。
+
+###21、给组件绑定原生事件(.native) 可以不使用$emit来触发父组件的事件。
+
 <div id='root'>
   <child @click.native = 'handleClick'> </child>
 </div>
@@ -168,7 +197,6 @@ Vue.component('row',{
       }
     }
  })
-```
 
 ### 21、非父子组件传值(Bus/总线/发布订阅模式/观察者模式)
    除了直接的父子关系以外，其他的都是非父子组件传值。
