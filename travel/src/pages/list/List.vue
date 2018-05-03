@@ -3,10 +3,6 @@
 </template>
 <script>
 export default {
-  name:'List'
+  name: 'List'
 }
 </script>
-<style>
-
-</style>
-
