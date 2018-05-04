@@ -5,7 +5,7 @@
 在本项目‘vue前期准备知识点’中,大家可自行下载。
 
 ### 技术栈
-vue@2.4 + webpack + node + vue-router + vue-cli + stylus + iconfont 
+vue@2.4 + webpack + node + vue-router + vue-cli + stylus + iconfont + vue-awesome-swiper
 
 ### 项目搭建
 使用官方提供的 v-cli 来搭建项目
@@ -26,6 +26,7 @@ $ npm run dev  //启动项目
 2. git add .
 3. git commit -m "注释"
 4. 提交本地代码 ：git push 
+5. git关于分支的操作可以参考：https://blog.csdn.net/top_code/article/details/51931916
 ```
 ### 项目结构
 
