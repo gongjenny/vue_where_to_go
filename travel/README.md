@@ -38,6 +38,27 @@ Header.vue中使用如下：
     background-color: $bgColor
 <style>
 ```
+###4、轮播图  
+使用的是vue的插件 vue-awesome-swiper，参数配置和swiper一样  
+有几个问题如下
+**4.1 3G下，轮播图下方内容快闪**  
+```
+    .wrapper
+        width: 100%
+        height: 0
+        overflow: hidden
+        padding-bottom: 26.67%  //高度设置为0，padding-bottom是相对于width的100%。
+        background-color: #eee
+```
+**4.2、样式穿透**   
+还有一个css样式穿透的问题:我们想修改swiper的轮播按钮的颜色时，直接写样式是不行的,因为style 修饰的当前组件的样式，
+但是swiper的样式在全局中，并不在当前组件中，所以我们要用**穿透>>>**的形式修改它的样式才能生效：
+```
+<style lang='stylus' scoped>
+.wrapper >>> .swiper-pagination-bullet-active
+        background-color: #fff
+</style>
+```
 
 
 
