@@ -40,7 +40,7 @@ Header.vue中使用如下：
 ```
 ### 4、轮播图  
 使用的是vue的插件 vue-awesome-swiper，参数配置和swiper一样  
-有几个问题如下
+有几个问题如下：  
 **4.1 3G下，轮播图下方内容快闪**  
 ```
     .wrapper
