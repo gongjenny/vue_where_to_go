@@ -1,8 +1,8 @@
 <template>
   <div class="icons">
     <swiper>
-      <swiper-slide v-for="(page, index) of pages" :key='index'>
-        <div class="icon" v-for="item of page" :key="item.id">
+      <swiper-slide v-for="(pageItem, index) of pages" :key='index'>
+        <div class="icon" v-for="item of pageItem" :key="item.id">
             <div class="icon-img-content">
             <img class='icon-img' :src="item.imgUrl" alt="">
             </div>
