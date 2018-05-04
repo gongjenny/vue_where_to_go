@@ -1,7 +1,7 @@
-###1、iconfont
+### 1、iconfont
 里面的小图标用的是阿里的iconfont，是文字格式，大小由font-size控制。避免了使用图片还要调整高度和位置的麻烦。
 
-###2、使用webpack配置简化代码
+### 2、使用webpack配置简化代码
 build/webpack.base.conf.js中‘alias’是用于给项目目录起别名使用，可以简化代码，但是切记修改webpack之后要重启一下服务器。  
 项目中是这样使用的：  
 webpack.base.conf.js中修改如下：
@@ -24,7 +24,7 @@ import 'styles/iconfont.css'
 @import '~styles/varibles.styl';
 <style>
 ```
-###3、css 起变量名
+### 3、css 起变量名
 项目中，有很多时候，很多样式是我们要**重复使用**的，这样我们可以把它**提取到一个文件中**，再引入公共文件就比较方便一些  
 varibles.styl 起变量名的文件如下：  
 ```
@@ -38,7 +38,7 @@ Header.vue中使用如下：
     background-color: $bgColor
 <style>
 ```
-###4、轮播图  
+### 4、轮播图  
 使用的是vue的插件 vue-awesome-swiper，参数配置和swiper一样  
 有几个问题如下
 **4.1 3G下，轮播图下方内容快闪**  
