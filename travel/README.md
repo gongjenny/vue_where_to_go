@@ -60,12 +60,17 @@ Header.vue中使用如下：
 </style>
 ```
 ### 5、使用vue推荐的axios 进行数据请求  
-**在实际开发中，我们会**
-**安装axios**  
-npm install axios --save   
-**home.vue中引入axios**  
+在实际开发中，我们会遇到首页加载数据的问题，我们最好把首页的数据一次加载进来完，避免多次请求数据，消耗性能 
+
+**5.1、安装axios**  
+```
+npm install axios --save  
+``` 
+**5.2、home.vue中引入axios**  
+```
 import axios from 'axios'  
-**在mounted中使用axios，具体的函数方法写在methods中**  
+```
+**5.3、在mounted中使用axios，具体的函数方法写在methods中**  
 ```
  methods: {
     getHomeInfo () {
@@ -79,7 +84,7 @@ import axios from 'axios'
     this.getHomeInfo()
   }
 ```
-**config中的index.js修改如下**
+**5.4、config中的index.js修改如下**
 ```
 //这个代理是web-dev-server提供的
 proxyTable: {
