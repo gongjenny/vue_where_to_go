@@ -18,24 +18,11 @@
 <script>
 export default {
   name: 'HomeRecommend',
+  props: {
+    recommendList: Array
+  },
   data () {
     return {
-      recommendList: [{
-        id: '0001',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1804/c8/c88bb5e69c9a9c5ea3.img.jpg_200x200_740720ff.jpg',
-        title: '大连圣亚海洋馆',
-        desc: '浪漫大连首站，浪漫海洋主题公园'
-      }, {
-        id: '0002',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1804/c8/c88bb5e69c9a9c5ea3.img.jpg_200x200_740720ff.jpg',
-        title: '大连圣亚海洋馆',
-        desc: '浪漫大连首站，浪漫海洋主题公园'
-      }, {
-        id: '0003',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1804/c8/c88bb5e69c9a9c5ea3.img.jpg_200x200_740720ff.jpg',
-        title: '大连圣亚海洋馆',
-        desc: '浪漫大连首站，浪漫海洋主题公园'
-      }]
     }
   }
 }
