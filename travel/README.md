@@ -105,5 +105,4 @@ router-link 这个标签用于跳转页面，和原生html中的a标签差不多
 <router-link to='path'></router-link>
 ```
 
-
 去哪网官方地址:  http://touch.piao.qunar.com/
