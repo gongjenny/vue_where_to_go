@@ -59,10 +59,38 @@ Header.vue中使用如下：
         background-color: #fff
 </style>
 ```
-### 5、
-
-
-
+### 5、使用vue推荐的axios 进行数据请求  
+**在实际开发中，我们会把首页中需要的所有数据都第一次请求完，这样可以减少http请求的次数**
+**安装axios**  
+npm install axios --save   
+**home.vue中引入axios**  
+import axios from 'axios'  
+**在mounted中使用axios，具体的函数方法写在methods中**  
+```
+ methods: {
+    getHomeInfo () {
+      axios.get('/api/index.json').then(this.getHomeInfoSucc) //其中的api用到了webpack的代理
+    },
+    getHomeInfoSucc (res) {
+      console.log(res)
+    }
+  },
+  mounted () {
+    this.getHomeInfo()
+  }
+```
+**config中的index.js修改如下**
+```
+//这个代理是web-dev-server提供的
+proxyTable: {
+      '/api': {
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/api': '/static/mock'
+        }
+      }
+    },
+```
 
 
 
