@@ -96,7 +96,14 @@ proxyTable: {
       }
     },
 ```
+### 6、渲染swiper时，会出现轮播图第一次加载进来显示最后一页的问题  
+这是由于最刚开始定义的  swiperList  是空数组的原因，我们可以通过判断swiperList的长度不为0时，加载swiper，来解决这个问题。
+### 7、router-link  
+router-link 这个标签用于跳转页面，和原生html中的a标签差不多，其中'to'，就是要跳转的页面。对应到router文件中的index.js里配置的path
 
+```
+<router-link to='path'></router-link>
+```
 
 
 去哪网官方地址:  http://touch.piao.qunar.com/
