@@ -26,7 +26,7 @@ $ npm run dev  //启动项目
 2. git add .
 3. git commit -m "注释"
 4. 提交本地代码 ：git push 
-5. 此项目切换分支的主要步骤  
+5. 此项目提交代码的主要步骤  
 git checkout -b city-router    //创建并切换到city-router分支  
 git add .   //添加city-router分支所有内容  
 git commit -m  'city路由配置'  //注释  
