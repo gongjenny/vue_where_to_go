@@ -5,7 +5,7 @@
 在本项目‘vue前期准备知识点’中,大家可自行下载。
 
 ### 技术栈
-vue@2.4 + webpack + node + vue-router + vue-cli + stylus + iconfont + vue-awesome-swiper
+vue@2.4 + webpack + node + vue-router + vue-cli + stylus + iconfont + fastclick + vue-awesome-swiper + better-scroll
 
 ### 项目搭建
 使用官方提供的 v-cli 来搭建项目
