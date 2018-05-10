@@ -15,7 +15,7 @@
                 <div class="item border-bottom" v-for = "item of hotCities" :key="item.id">{{item.name}}</div>
             </div>
         </div>
-        <div class="area" v-for= '(items,key) of cities' :key= 'key'>
+        <div class="area" v-for= '(items,key) of cities' :key= 'key' :ref='key'>
             <div class="title border-topbottom">{{key}}</div>
             <div class="item-list" v-for='item of items' :key='item.id'>
                 <div class="item border-bottom">{{item.name}}</div>
@@ -30,10 +30,20 @@ export default {
   name: 'CityList',
   props: {
     cities: Object,
-    hotCities: Array
+    hotCities: Array,
+    letter: String
   },
   mounted () {
     this.scroll = new BScroll(this.$refs.wrapper)
+  },
+  watch: { //监听变化的数据
+    letter () {
+      if (this.letter) {
+        //每个area 区域对应一个key值，点击的时候，当前的key和 this.letter 是一样的 ，通过this.$refs.name[0]来获取到当前dom元素
+        const element = this.$refs[this.letter][0]
+        this.scroll.scrollToElement(element)
+      }
+    }
   }
 }
 </script>
