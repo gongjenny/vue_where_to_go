@@ -30,7 +30,7 @@ $ npm run dev  //启动项目
 git checkout -b city-router    //创建并切换到city-router分支  
 git add .   //添加city-router分支所有内容  
 git commit -m  'city路由配置'  //注释  
-git push   //提交city-router分支内容  
+git push --set-upstream origin city-router   //提交city-router分支内容  
 git chekout master  //切换到主分支  
 git merge city-router   // 合并刚才改的分支  
 git push  // 再提交主分支  
