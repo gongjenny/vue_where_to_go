@@ -5,7 +5,7 @@
     </div>
     <div class="search-content" ref="search" v-show="keyword">
         <ul>
-          <li 
+          <li
            class='search-item border-bottom'
            v-for='item of list' :key='item.id'>{{item.name}}
           </li>
@@ -44,15 +44,15 @@ export default {
       }
       this.timer = setTimeout(() => {
         const result = []
-        for (let i in this.cities){
+        for (let i in this.cities) {
           this.cities[i].forEach((value) => {
-            if(value.spell.indexOf(this.keyword) > -1 || value.name.indexOf(this.keyword) > -1){
-                result.push(value);
+            if (value.spell.indexOf(this.keyword) > -1 || value.name.indexOf(this.keyword) > -1) {
+              result.push(value)
             }
-          });
+          })
         }
         this.list = result
-      },100)
+      }, 100)
     }
   },
   mounted () {
@@ -82,7 +82,7 @@ export default {
     bottom 0
     right 0
     background #eee
-    z-index 1    
+    z-index 1
     .search-item
       line-height .62rem
       padding-left .2rem

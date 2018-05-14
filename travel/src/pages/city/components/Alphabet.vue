@@ -1,6 +1,6 @@
 <template>
   <ul class="list">
-      <li class="item" v-for='item of letters' 
+      <li class="item" v-for='item of letters'
         :key='item'
         :ref="item"
         @click='handleLetterClick'
@@ -21,12 +21,10 @@ export default {
   computed: {
     letters () {
       const letters = []
-      for (let i in this.cities){
-        console.log(i)
+      for (let i in this.cities) {
         letters.push(i)
       }
       return letters
-      console.log(letters)
     }
   },
   data () {
@@ -48,17 +46,16 @@ export default {
     },
     handTouchMove (e) {
       if (this.touchStatus) {
-        if(this.timer){
+        if (this.timer) {
           clearTimeout(this.timer)
         }
         this.timer = setTimeout(() => {
           const touchY = e.touches[0].clientY - 80
-          const index = Math.floor((touchY-this.startY)/20)
-          if(index >= 0 && index <= this.letters.length){
-            this.$emit('change',this.letters[index])
+          const index = Math.floor((touchY - this.startY) / 20)
+          if (index >= 0 && index <= this.letters.length) {
+            this.$emit('change', this.letters[index])
           }
-        },16)
-        
+        }, 16)
       }
     },
     handTouchEnd () {

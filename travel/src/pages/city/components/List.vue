@@ -36,10 +36,9 @@ export default {
   mounted () {
     this.scroll = new BScroll(this.$refs.wrapper)
   },
-  watch: { //监听变化的数据
+  watch: {
     letter () {
       if (this.letter) {
-        //每个area 区域对应一个key值，点击的时候，当前的key和 this.letter 是一样的 ，通过this.$refs.name[0]来获取到当前dom元素
         const element = this.$refs[this.letter][0]
         this.scroll.scrollToElement(element)
       }
