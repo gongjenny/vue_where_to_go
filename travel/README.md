@@ -109,6 +109,7 @@ router-link 这个标签用于跳转页面，和原生html中的a标签差不多
 ```
 this.$router.push('/')
 ```
-
+### 8、localStorage存储
+要使用try catch  来处理，用户关闭了存储功能，或使用隐身模式等，异常 的情况
 
 去哪网官方地址:  http://touch.piao.qunar.com/

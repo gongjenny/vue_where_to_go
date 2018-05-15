@@ -13,14 +13,14 @@
             <div class="title border-topbottom">热门城市</div>
             <div class="item-list">
                 <div class="item border-bottom" v-for = "item of hotCities" :key="item.id"
-                @click='handleCityClick(item.name)'
+                @click="handleCityClick(item.name)"
                 >{{item.name}}</div>
             </div>
         </div>
         <div class="area" v-for= '(items,key) of cities' :key= 'key' :ref='key'>
             <div class="title border-topbottom">{{key}}</div>
             <div class="item-list" v-for='item of items' :key='item.id'>
-                <div class="item border-bottom" @click='handleCityClick(item.name)'>{{item.name}}</div>
+                <div class="item border-bottom" @click="handleCityClick(item.name)">{{item.name}}</div>
             </div>
         </div>
       </div>
@@ -35,12 +35,6 @@ export default {
     hotCities: Array,
     letter: String
   },
-  methods: {
-    handleCityClick (city) {
-      this.$store.commit('changeCity', city)
-      this.$router.push('/')
-    }
-  },
   mounted () {
     this.scroll = new BScroll(this.$refs.wrapper)
   },
@@ -50,6 +44,12 @@ export default {
         const element = this.$refs[this.letter][0]
         this.scroll.scrollToElement(element)
       }
+    }
+  },
+  methods: {
+    handleCityClick (city) {
+      this.$store.commit('changeCity', city)
+      this.$router.push('/')
     }
   }
 }
