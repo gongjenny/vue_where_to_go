@@ -105,5 +105,10 @@ router-link 这个标签用于跳转页面，和原生html中的a标签差不多
 ```
 <router-link to='path'></router-link>
 ```
+还有另一种跳转页面的方法和原生的window.location类似：  
+```
+this.$router.push('/')
+```
+
 
 去哪网官方地址:  http://touch.piao.qunar.com/

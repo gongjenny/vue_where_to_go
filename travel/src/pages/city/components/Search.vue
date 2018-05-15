@@ -7,7 +7,7 @@
         <ul>
           <li
            class='search-item border-bottom'
-           v-for='item of list' :key='item.id'>{{item.name}}
+           v-for='item of list' :key='item.id' @click='handleCityClick(item.name)'>{{item.name}}
           </li>
           <li class='search-item border-bottom' v-show="hasnoList">没有找到匹配数据</li>
         </ul>
@@ -31,6 +31,12 @@ export default {
   computed: {
     hasnoList () {
       return !this.list.length
+    }
+  },
+  methods: {
+    handleCityClick (city) {
+      this.$store.commit('changeCity', city)
+      this.$router.push('/')
     }
   },
   watch: {
