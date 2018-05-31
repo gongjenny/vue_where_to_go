@@ -55,7 +55,7 @@ export default {
   methods: {
     handleCityClick (city) {
       //this.$store.commit('changeCity', city)
-      this.changeCity(city)//调取当前映射组件中的changeCity方法
+      this.changeCity(city)//调取当前映射组件中的changeCity方法，传值到store中，改变city的值
       this.$router.push('/')
     },
     ...mapMutations (['changeCity'])//把store中的changeCity函数映射到当前组件

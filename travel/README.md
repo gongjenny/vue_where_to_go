@@ -109,7 +109,21 @@ router-link 这个标签用于跳转页面，和原生html中的a标签差不多
 ```
 this.$router.push('/')
 ```
-### 8、localStorage存储
+### 8、localStorage存储  
 要使用try catch 来处理localStorage存储，用户关闭了存储功能，或使用隐身模式等 会出现异常的情况
 
 去哪网官方地址:  http://touch.piao.qunar.com/
+### 9、vuex  
+vuex 是一个状态管理工具，使用的是单一状态树，vuex它的实例我们称之为store, 使用方法 Vue.use(Vuex)。  
+里面有几个的核心的概念：state/getters/mutations/actions/modules,具体使用参考文档。   
+...mapState(对象展开运算符)： 使用对象展开运算符将此对象混入到外部对象中。
+### 10、使用keep-alive优化页面性能  
+此项目每次跳转页面的时候，首页点击header中的城市 跳转到  城市列表页时，每次都会重新数据，这样特别浪费性能。
+我们可以使用keep-alive取缓存的特性来优化性能： 
+```
+<keep-alive>
+  <router-view/>
+</keep-alive>
+```
+同时，keep-alive被激活的时候，activated会被调用。
+
