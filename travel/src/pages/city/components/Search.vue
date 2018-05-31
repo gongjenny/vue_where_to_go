@@ -16,6 +16,7 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
+import { mapMutations } from 'vuex'
 export default {
   name: 'CitySearch',
   props: {
@@ -34,10 +35,12 @@ export default {
     }
   },
   methods: {
-    handleCityClick (city) {
-      this.$store.commit('changeCity', city)
+     handleCityClick (city) {
+      //this.$store.commit('changeCity', city)
+      this.changeCity(city)//调取当前映射组件中的changeCity方法
       this.$router.push('/')
-    }
+    },
+    ...mapMutations (['changeCity'])//把store中的changeCity函数映射到当前组件
   },
   watch: {
     keyword () {
