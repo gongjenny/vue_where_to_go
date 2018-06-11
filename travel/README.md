@@ -126,4 +126,25 @@ vuex 是一个状态管理工具，使用的是单一状态树，vuex它的实�
 </keep-alive>
 ```
 同时，keep-alive被激活的时候，activated会被调用。
+### 11、swiper 配置项 swiperOptions  
+当swiper设置隐藏/显示的时候会出现滑动不流畅的情况，是因为width没有加载正确，这时可以设置observeParents,observer，在swiper被触发时, 自己会先刷新一遍，加载正确的宽度。
+具体如下：  
+```
+<swiper :options = "swiperOptions">
+  <swiper-slide v-for="(item,index) in imgs" :key="index">
+      <img class='gallary-img' :src="item">
+  </swiper-slide>
+  <div class="swiper-pagination"  slot="pagination"></div>
+</swiper>  
+data () {
+  return {
+    swiperOptions: {
+      pagination: '.swiper-pagination',
+      paginationType: 'fraction',
+      observeParents:true,
+      observer:true
+    }
+  }
+}
+```
 
