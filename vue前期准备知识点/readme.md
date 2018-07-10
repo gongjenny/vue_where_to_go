@@ -150,7 +150,7 @@ Vue.component('row',{
 若ref 写到 组件上， 则获取到的是这个组件对象，里面包含的是这个组件上vue的内置方法。例如：$attrs,$el 等等。
 
 ### 18、父子组件传值的问题 单向数据流 父组件可以传递任何值给子组件，但是子组件不能改变父组件传过来的数据，若是一定要改，则可以要拷贝一份到data中，改变这个复本就可以了。
-
+```
 <div id='root'>
   <counter :count='3' @inc = "handleInc">
 
@@ -171,16 +171,19 @@ Vue.component('row',{
      }
   }
 </script>
-
+```
 ### 19、绑定数字
-
+```
     <div content='123'></div> //123是string
     <div :content='123'></div>//123是number
+```
 ### 20、组件参数校验 
+```
 props:{content:String/Number/[String,String]}//要求父组件传过来的content是对应类型。具体参考文档。
+```
 
-###21、给组件绑定原生事件(.native) 可以不使用$emit来触发父组件的事件。
-
+### 21、给组件绑定原生事件(.native) 可以不使用$emit来触发父组件的事件。
+```
 <div id='root'>
   <child @click.native = 'handleClick'> </child>
 </div>
@@ -197,8 +200,8 @@ props:{content:String/Number/[String,String]}//要求父组件传过来的conten
       }
     }
  })
-
-### 21、非父子组件传值(Bus/总线/发布订阅模式/观察者模式)
+```
+### 22、非父子组件传值(Bus/总线/发布订阅模式/观察者模式)
    除了直接的父子关系以外，其他的都是非父子组件传值。
    通过给vue的原型方法添加一个bus函数，并且赋值为空的vue实例。在mounted钩子函数中用bus去监听，传递过来要改变的数据。
 ```
@@ -239,7 +242,7 @@ props:{content:String/Number/[String,String]}//要求父组件传过来的conten
     })
 </script>
 ```
-### 22、slot 插槽 ，具名插槽(有name的slot)
+### 23、slot 插槽 ，具名插槽(有name的slot)
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -273,7 +276,7 @@ props:{content:String/Number/[String,String]}//要求父组件传过来的conten
 </script>
 </html>
 ```
-### 23、vue 作用域插槽 slot-scope
+### 24、vue 作用域插槽 slot-scope
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -315,12 +318,12 @@ props:{content:String/Number/[String,String]}//要求父组件传过来的conten
 </body>
 </html>
 ```
-### 24、动态组件与v-once指令
-**24-1、component动态组件**
+### 25、动态组件与v-once指令
+**25-1、component动态组件**
 
     component是vue的动态组件，里面的is属性为谁的值，就显示哪个组件。
 
-**24-2、v-once指令**
+**25-2、v-once指令**
 
     使用v-if ，vue底层会有一个创建和销毁该组件的过程，这样是非常消耗性能的，所有我们可以给组件中加v-once，去让它在第一次创建的时候，将该组件保留在内存中，下次使用时，直接从内存中取。
 
@@ -367,13 +370,13 @@ props:{content:String/Number/[String,String]}//要求父组件传过来的conten
 
 ```
 
-### 25、vue中css动画原理
+### 26、vue中css动画原理
     <transtion name='fade'></transtion>  
     不写name，vue中默认动画前缀为v-， 写了name，默认为fade-,name可以随意取。
 ![avatar](./enter.png);
 ![avatar](./leave.png);
 
-### 26.在vue中使用animate.css库
+### 27.在vue中使用animate.css库
  其余是动画相关的知识，暂时用不到这个，先以项目中用到的为主，以后持续补充这个。 大家，加油！
 
 
