@@ -27,6 +27,10 @@ export default {
   },
   computed: {
     pages () {
+      //这段代码的逻辑，如下：
+      //设置一个空数组pages，循环iconlist，8个为一组，成为swiper的一页，但是iconList的长度不确定，我们不知道它到底能分成几页，所以循环iconList的时候，计算 page = Math.floor(index / 8)的值，若不超过8，则为 page=0。超过8，但小于16， page=1。 超过16，不超过24， page=2，以此类推。即分别为swiper的页数。
+      //再判断，当前页数有没有值，若没有，则设为空数组，若有，则把当前item push到该页。
+      //上面swiper 循环时，要循环两遍，一遍是swiper的页面，一遍是swiper里面的icon
       const pages = []
       this.iconList.forEach((item, index) => {
         const page = Math.floor(index / 8)

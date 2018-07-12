@@ -23,6 +23,8 @@ export default {
     }
   },
   computed: {
+    //渲染swiper时，会出现轮播图第一次加载进来显示最后一页的问题  
+    //这是由于最刚开始定义的  swiperList  是空数组的原因，我们可以通过判断swiperList的长度不为0时，加载swiper，来解决这个问题。
     showSwiper () {
       return this.swiperList.length
     }

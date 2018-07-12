@@ -12,6 +12,7 @@
    </div>
  </template>
  <script>
+ //当前页面没写完，后期补充
  export default {
    name: 'DetailHeader',
    data () {

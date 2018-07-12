@@ -32,6 +32,7 @@ export default {
     }
   },
   methods: {
+    //点击关闭画廊，把close，传到父层banner组件，让父组件设置该组件为false关闭。
     handleGallary () {
       this.$emit('close')
     }

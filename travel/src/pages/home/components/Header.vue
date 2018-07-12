@@ -16,6 +16,7 @@
   </div>
 </template>
 <script>
+// mapState,mapGetters 的理解参考Home.vue页面，Header_state.vue页面是复制的Header.vue页面，里面是不用展开符的写法
 import { mapState,mapGetters } from 'vuex'
 export default {
   name: 'HomeHeader',

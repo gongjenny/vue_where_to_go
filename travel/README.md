@@ -110,9 +110,8 @@ router-link 这个标签用于跳转页面，和原生html中的a标签差不多
 this.$router.push('/')
 ```
 ### 8、localStorage存储  
-要使用try catch 来处理localStorage存储，用户关闭了存储功能，或使用隐身模式等 会出现异常的情况
+要使用try catch 来处理localStorage存储，用户关闭了存储功能，或使用隐身模式等 会出现异常的情况，可处理异常。
 
-去哪网官方地址:  http://touch.piao.qunar.com/
 ### 9、vuex  
 vuex 是一个状态管理工具，使用的是单一状态树，vuex它的实例我们称之为store, 使用方法 Vue.use(Vuex)。  
 里面有几个的核心的概念：state/getters/mutations/actions/modules,具体使用参考文档。   

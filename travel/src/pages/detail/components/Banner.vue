@@ -16,6 +16,7 @@ export default {
   name: 'DetailBanner',
   data(){
     return {
+      //这里应该是请求过来的图片，但是之前讲过请求数据的方法了，这里暂时就先用静态的数组代替
       imgs:['http://img1.qunarzz.com/sight/p0/1501/d0/d00d72664c3e73d8.water.jpg_600x330_20d81a68.jpg',
         'http://img1.qunarzz.com/sight/p0/201403/07/dca171d32e20adbf141e7f8f91b71c0e.jpg_r_800x800_f7e086d4.jpg'],
       gallaryClose: false 
@@ -25,6 +26,10 @@ export default {
     handleBannerClick (){
       this.gallaryClose = true; 
     },
+    //CommonGallary画廊组件是一个公共组件（画廊为子组件，当前banner为父组件，父组件控制子组件的显示和隐藏）
+    //想点击打开子组件，需要的过程是，点击banner中的图片，直接设置子组件的属性为true让子组件显示即可。
+    //想点击关闭画廊组件，需要的过程是，点击子组件，让父组件切换子组件的属性为false，关闭子组件。
+    //所以要想实现点击子组件关闭，子组件必须要用$emit(),传一个参数给父组件做通信。
     handleGallaryClose () {
       this.gallaryClose = false; 
     }
@@ -66,3 +71,4 @@ export default {
       .banner-icon
         font-size .24rem
 </style>
+
