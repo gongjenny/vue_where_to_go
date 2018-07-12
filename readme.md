@@ -1,19 +1,29 @@
 ## 前言
 最近公司项目前端部分稍稍得空，且vue2.x轻量，简洁的特点，是我个人比较喜欢的类型，所以借此机会学习一下vue。
 **本项目是基于vue，开发的去哪网，在travel目录下，对应项目的知识在travel的readme中。**
-为方便自己和大家对vue的学习，特地对vue开发需要前期准备的基础知识及注意点，一条条进行了总结，并且对难点写了demo。
-在本项目‘vue前期准备知识点’中,大家可自行下载。
+为方便自己和大家对vue的学习，特地对vue开发需要前期准备的基础知识及注意点，一条条进行了总结，并且对难点写了demo。在本项目‘vue前期准备知识点’中,大家可自行下载。
 
 ### 技术栈
 vue@2.4 + webpack + node + vue-router + vue-cli + stylus + iconfont + fastclick + vue-awesome-swiper ++ axios + better-scroll + vuex
 
-### 项目搭建
+### 项目运行(进入到travel项目运行)
+安装依赖  
+npm install
+启动项目  
+npm run dev  
+打开项目
+localhost:8080
+
+
+### 项目搭建的过程
 使用官方提供的 v-cli 来搭建项目
 ```
 全局安装 vue-cli
-$ npm install --global vue-cli
+$ npm install --global vue-cli  
+
 创建一个基于 webpack 模板的新项目
-$ vue init webpack travel
+$ vue init webpack travel  
+
 安装依赖，走你
 $ cd travel
 $ npm run dev  //启动项目
@@ -37,12 +47,13 @@ git push  // 再提交主分支
 
 git关于分支的其他操作可以参考：https://blog.csdn.net/top_code/article/details/51931916  
 ```
-### 项目结构
+### 项目效果图
+![travel效果图](./travel.gif)  
 
+项目功能简单，但涵盖了vue大部分的知识点, 适合入门学习
 
-### 项目完成的功能
-
-
+### 交流
+ qq：1537384546，欢迎一起进步加油
 ### 说明
 如果你还喜欢，请star一下哦~
 
