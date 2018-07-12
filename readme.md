@@ -7,11 +7,11 @@
 vue@2.4 + webpack + node + vue-router + vue-cli + stylus + iconfont + fastclick + vue-awesome-swiper ++ axios + better-scroll + vuex
 
 ### 项目运行(进入到travel项目运行)
-安装依赖  
-npm install
-启动项目  
+**安装依赖**  
+npm install  
+**启动项目**   
 npm run dev  
-打开项目
+**打开项目**  
 localhost:8080
 
 
