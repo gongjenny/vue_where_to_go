@@ -8,7 +8,7 @@ import router from './router' // 不写index，会默认引入当前目录下的
 import store from './store/index'
 import fastClick from 'fastclick' // 解决手机点击会产生300ms延迟的问题
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-
+import 'babel-polyfill'
 // 下面目录中的'styles', 是通过build/webpack.base.conf.js中的’alias‘配置的
 import 'styles/reset.css'
 import 'styles/border.css'

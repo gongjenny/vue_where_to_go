@@ -1,10 +1,11 @@
 <template>
   <ul class="list">
+    <!-- 加一个prevent，是解决真机上测试，拖动字母，页面会随着拖动的问题 -->
       <li class="item" v-for='item of letters'
         :key='item'
         :ref="item"
         @click='handleLetterClick'
-        @touchstart='handTouchStart'
+        @touchstart.prevent='handTouchStart'
         @touchmove='handTouchMove'
         @touchend='handTouchEnd'
         >
