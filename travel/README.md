@@ -215,21 +215,17 @@ proxyTable: {
 找到你电脑的ip，在浏览器中输入ip:8080,这时你会发现本地服务器拒绝了你的请求，是因为webpack配置项不支持ip访问，这时，只需要在package.json中修改配置如下即可。
 ```
 "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js"
   },
-改为：
+修改为：
 "scripts": {
-    "dev": "webpack-dev-server --host 0.0.0.0 --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "dev": "webpack-dev-server --host 0.0.0.0 --inline --progress --config build/webpack.dev.conf.js"
   },
-  重启服务器，真机调试，用手机访问ip:8080即可。 
+
 ```
-这时会发现真机上测试城市列表页的时候，会出现拖动字母，整个页面也被拖动的问题，这时我们修改代码如下即可：
+重启服务器，真机调试，用手机访问ip:8080即可。  
+
+**这时会发现真机上测试城市列表页的时候，会出现拖动字母，整个页面也被拖动的问题，这时我们修改代码如下即可：**
 ```
 <template>
   <ul class="list">
@@ -247,9 +243,10 @@ proxyTable: {
 </template>
 ```
 **还可能出现的问题是，不同的手机进入城市列表页，可能会出现当前页面白屏的问题，一般会有2个原因：**  
-**16-1、手机浏览器不支持es6属性** 
+
+**16-1、手机浏览器不支持es6属性**   
 那是因为手机浏览器不支持promise，这时我们安装一个包，npm install babel-polyfill --save，这个包会判断如果浏览器不支持promise，会自动在浏览器中添加es6的新特性。再去main.js 中写入 import 'babel-polyfill' 即可
-**2、webapck打包后即可解决**
+**16-2、webapck打包后即可解决**
 
 ### 17、打包上线
 终端运行 npm run bulid，成功之后项目中会多出来一个dist文件，这个目录就是我们要最终上线的代码。
