@@ -12,7 +12,6 @@
    </div>
  </template>
  <script>
- //当前页面没写完，后期补充
  export default {
    name: 'DetailHeader',
    data () {
@@ -25,21 +24,25 @@
    },
    methods: {
        handleScroll () {
+           //获取滚动条的高度
            const top = document.documentElement.scrollTop;
            if(top > 60){
                let opacity = top / 140;
                opacity = opacity > 1 ? 1: opacity;
-               this.opacityStyle = { opacity };
+               this.opacityStyle = { opacity }; //键值相等的时候写一个
                this.showAbs = false;
            }else{
                this.showAbs = true;
            }
-           console.log(document.documentElement.scrollTop)
        }
    },
-   activated () {
+   activated () { //整个项目最外层包裹的有 keep-alive，打开这个页面并且当页面滚动的时候，执行这个方法,但是这个会//遗留一个问题，就是会影响到别处scroll的使用，因为handleScroll函数添加到了 window 上。解决办法使用 //deactivated钩子函数解绑
        window.addEventListener('scroll',this.handleScroll)
+   },
+   deactivated () {//当离开这个组件时执行，解绑全局事件
+       window.removeEventListener('scroll',this.handleScroll)
    }
+
  }
  </script>
  <style lang='stylus' scoped>
@@ -76,7 +79,7 @@
       text-align: center
       font-size: .4rem
       color: #fff 
-
+  
 
  </style>
  

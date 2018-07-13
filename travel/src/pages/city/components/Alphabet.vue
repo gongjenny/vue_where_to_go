@@ -55,7 +55,7 @@ export default {
           // move过程中，计算当前滑到的是哪个字母，然后传给父组件，再传到list页面，对应到字母的区域
           // e.touches[0].clientY  是当前触摸点到最顶部的距离。
           // 80 是  城市选择 + 搜索框的 height。
-          // touchY 是 触摸点到搜索哦框的距离。
+          // touchY 是 触摸点到搜索框的距离。
           // this.startY 是字母 A 到 搜索框的距离。
           // 20 是 每个字母的height。
           const touchY = e.touches[0].clientY - 80

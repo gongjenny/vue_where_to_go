@@ -19,7 +19,7 @@ export default new Router({
       component: City
     },
     {
-      path: '/detail',
+      path: '/detail/:id', // 详情页面传递参数
       name: 'Detail',
       component: Detail
     }
