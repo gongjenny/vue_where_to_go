@@ -245,7 +245,7 @@ proxyTable: {
 **还可能出现的问题是，不同的手机进入城市列表页，可能会出现当前页面白屏的问题，一般会有2个原因：**  
 
 **16-1、手机浏览器不支持es6属性**   
-那是因为手机浏览器不支持promise，这时我们安装一个包，npm install babel-polyfill --save，这个包会判断如果浏览器不支持promise，会自动在浏览器中添加es6的新特性。再去main.js 中写入 import 'babel-polyfill' 即可
+那是因为手机浏览器不支持promise，这时我们安装一个包，npm install babel-polyfill --save，这个包会判断如果浏览器不支持promise，会自动在浏览器中添加es6的新特性。再去main.js 中写入 import 'babel-polyfill' 即可  
 **16-2、webapck打包后即可解决**
 
 ### 17、打包上线
