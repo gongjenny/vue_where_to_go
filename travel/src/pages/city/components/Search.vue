@@ -15,7 +15,9 @@
   </div>
 </template>
 <script>
+// 滚动条
 import BScroll from 'better-scroll'
+// 引入vuex的映射函数
 import { mapMutations } from 'vuex'
 export default {
   name: 'CitySearch',
@@ -35,14 +37,15 @@ export default {
     }
   },
   methods: {
-     handleCityClick (city) {
+    // 搜索后的列表，点击执行该函数
+    handleCityClick (city) {
       //this.$store.commit('changeCity', city)
       this.changeCity(city)//调取当前映射组件中的changeCity方法
       this.$router.push('/')
     },
     ...mapMutations (['changeCity'])//把store中的changeCity函数映射到当前组件
   },
-  watch: {
+  watch: {  //watch监听数据的变化
     keyword () {
       if (this.timer) {
         clearTimeout(this.timer)
@@ -51,6 +54,7 @@ export default {
         this.list = []
         return
       }
+      // 使用定时器，可以优化性能
       this.timer = setTimeout(() => {
         const result = []
         for (let i in this.cities) {

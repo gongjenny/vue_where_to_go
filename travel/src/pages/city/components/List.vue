@@ -42,13 +42,14 @@ export default {
     })
   },
   mounted () {
-    this.scroll = new BScroll(this.$refs.wrapper)
+    this.scroll = new BScroll(this.$refs.wrapper) // 设置滚动区域
   },
   watch: {
+    // letter是从alaphabet那里传到父组件city，再分发这个页面的
     letter () {
       if (this.letter) {
-        const element = this.$refs[this.letter][0]
-        this.scroll.scrollToElement(element)
+        const element = this.$refs[this.letter][0] // 获取到这个letter 对应的div区域
+        this.scroll.scrollToElement(element)  //滚动到当前字母的区域。
       }
     }
   },
