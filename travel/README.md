@@ -146,4 +146,61 @@ data () {
   }
 }
 ```
+### 12、解绑全局事件
+```
+activated () { //整个项目最外层包裹的有 keep-alive，打开这个页面并且当页面滚动的时候，执行这个方法,但是这个会遗留一个问题，就是会影响到别处scroll的使用，因为handleScroll函数添加到了window上。解决办法使用deactivated钩子函数解绑
+       window.addEventListener('scroll',this.handleScroll)
+   },
+   deactivated () {//当离开这个组件时执行，解绑全局事件
+       window.removeEventListener('scroll',this.handleScroll)
+   }
+```
+### 13、export 的 name值的用途  
+## 13-1、递归组件  
+export default{name:'detailList'}中name的一个作用是，自己调用自己的组件(递归)  
+```
+<template>
+  <detail-list></detail-list>
+</template>
+<script>
+  export default{
+    name:'detailList'
+  }
+</script>
+```
+## 13-2、去除缓存
+```
+  <keep-alive exclude='Detail'>   //除了Detail组件其他都做缓存
+      <router-view/>
+  </keep-alive> 
+```
+## 13-3、使用vue-devtools工具调试的时候用  
+
+### 14、详情页面滚动，相互产生会影响
+在路由router/index.js 中配置   
+```
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/city',
+      name: 'City',
+      component: City
+    },
+    {
+      path: '/detail/:id', // 详情页面传递参数
+      name: 'Detail',
+      component: Detail
+    }
+  ],
+  scrollBehavior (to, from, savedPosition) { // 解决热门推荐进入详情页时候，滚动互相产生的影响。
+    return { x: 0, y: 0 }
+  }
+})
+```
+
 

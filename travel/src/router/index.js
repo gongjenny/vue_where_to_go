@@ -8,7 +8,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    { 
+    {
       path: '/',
       name: 'Home',
       component: Home
@@ -23,5 +23,9 @@ export default new Router({
       name: 'Detail',
       component: Detail
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) { // 解决热门推荐进入详情页时候，滚动互相产生的影响。
+    return { x: 0, y: 0 }
+  }
+
 })
