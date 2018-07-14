@@ -275,9 +275,10 @@ export default new Router({
     }]
 ```
 不仅在router中可以这样修改，在组件中也可以这样修改，如Home.vue中，方法雷同不再举例。
-## 19、项目完毕，做中型项目应该不大，若是想在深入了解，多研究vue文档，加油！
-## 真机测试出现一些其他bug，暂未解决，这两天会解决。
- 点击城市列表没反应,路由有没有跳转。  
- 点击详情页面，渐隐渐现的header未出现。  
- 画廊卡顿。
-
+### 19、真机测试出现一些其他bug。  
+**19-1.点击城市列表没反应,路由有没有跳转。**  
+  this.scroll = new BScroll(this.$refs.wrapper,{click:true})//配置BScroll的click参数   
+**点击详情页面，渐隐渐现的header未出现。**   
+手机浏览器获取top值有兼容，处理兼容如下：  
+const top = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+## 20、项目完毕，做中型项目应该不大，若是想在深入了解，多研究vue文档，加油！

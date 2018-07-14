@@ -42,7 +42,7 @@ export default {
     })
   },
   mounted () {
-    this.scroll = new BScroll(this.$refs.wrapper) // 设置滚动区域
+    this.scroll = new BScroll(this.$refs.wrapper,{click:true}) // 设置滚动区域
   },
   watch: {
     // letter是从alaphabet那里传到父组件city，再分发这个页面的
