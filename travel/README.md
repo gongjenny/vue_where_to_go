@@ -278,7 +278,7 @@ export default new Router({
 ### 19、真机测试出现一些其他bug。  
 **19-1.点击城市列表没反应,路由有没有跳转。**  
   this.scroll = new BScroll(this.$refs.wrapper,{click:true})//配置BScroll的click参数   
-**点击详情页面，渐隐渐现的header未出现。**   
+**19-2.点击详情页面，渐隐渐现的header未出现。**   
 手机浏览器获取top值有兼容，处理兼容如下：  
 const top = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
 ## 20、项目完毕，做中型项目应该不大，若是想在深入了解，多研究vue文档，加油！
