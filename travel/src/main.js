@@ -1,14 +1,14 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 // 项目的入口js
-// 把项目中用到的.vue页面和js引进来
+// 把项目中用到的 App.vue启动页面和js引进来
 import Vue from 'vue'
 import App from './App' // 引入App.vue页面
 import router from './router' // 不写index，会默认引入当前目录下的index.js,这个是node的加载方式
 import store from './store/index'
 import fastClick from 'fastclick' // 解决手机点击会产生300ms延迟的问题
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-import 'babel-polyfill'
+import 'babel-polyfill' // 解决手机浏览器不支持es6属性的问题
 // 下面目录中的'styles', 是通过build/webpack.base.conf.js中的’alias‘配置的
 import 'styles/reset.css'
 import 'styles/border.css'
