@@ -212,7 +212,7 @@ proxyTable: {
 },
 ```
 ### 16、 真机测试  
-**16-1、localhost 连接 真机测试**
+#### 16-1、localhost 连接 真机测试
 找到你电脑的ip，在浏览器中输入ip:8080,这时你会发现本地服务器拒绝了你的请求，是因为webpack配置项不支持ip访问，这时，只需要在package.json中修改配置如下即可。
 ```
 "scripts": {
@@ -225,8 +225,10 @@ proxyTable: {
 
 ```
 重启服务器，真机调试，用手机访问ip:8080即可。  
-**16-2、真机上出现的bug**
-**16-2-1、这时会发现真机上测试城市列表页的时候，会出现拖动字母，整个页面也被拖动的问题，这时我们修改代码如下即可：**
+
+####16-2、真机上出现的bug
+
+**16-2-bug1、这时会发现真机上测试城市列表页的时候，会出现拖动字母，整个页面也被拖动的问题，这时我们修改代码如下即可：**
 ```
 <template>
   <ul class="list">
@@ -243,11 +245,25 @@ proxyTable: {
   </ul>
 </template>
 ```
-**还可能出现的问题是，不同的手机进入城市列表页，可能会出现当前页面白屏的问题，一般会有2个原因：**  
 
-**16-1、手机浏览器不支持es6属性**   
+**16-2-bug2、还可能出现的问题是，不同的手机进入城市列表页，可能会出现当前页面白屏的问题，一般会有2个原因：**  
+
+**1、手机浏览器不支持es6属性**   
+
 那是因为手机浏览器不支持promise，这时我们安装一个包，npm install babel-polyfill --save，这个包会判断如果浏览器不支持promise，会自动在浏览器中添加es6的新特性。再去main.js 中写入 import 'babel-polyfill' 即可  
-**16-2、webapck打包后即可解决**
+
+**2、webapck打包后即可解决**
+
+
+**16-2-bug3、点击城市列表没反应,路由有没有跳转。**  
+```
+this.scroll = new BScroll(this.$refs.wrapper,{click:true})//配置BScroll的click参数   
+```
+**16-2-bug4、点击详情页面，渐隐渐现的header未出现。**   
+```
+手机浏览器获取top值有兼容，处理兼容如下：  
+const top = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+```
 
 ### 17、打包上线
 终端运行 npm run bulid，成功之后项目中会多出来一个dist文件，这个目录就是我们要最终上线的代码。
@@ -276,14 +292,5 @@ export default new Router({
     }]
 ```
 不仅在router中可以这样修改，在组件中也可以这样修改，如Home.vue中，方法雷同不再举例。
-### 19、真机测试出现一些其他bug。  
-**19-1.点击城市列表没反应,路由有没有跳转。**  
-```
-this.scroll = new BScroll(this.$refs.wrapper,{click:true})//配置BScroll的click参数   
-```
-**19-2.点击详情页面，渐隐渐现的header未出现。**   
-```
-手机浏览器获取top值有兼容，处理兼容如下：  
-const top = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-```
-## 20、项目完毕，做中型项目应该不大，若是想在深入了解，多研究vue文档，加油！
+
+## 19、项目完毕，做中型项目应该不大，若是想在深入了解，多研究vue文档，加油！
